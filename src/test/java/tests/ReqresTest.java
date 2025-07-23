@@ -9,10 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import api.Specifications;
+import io.restassured.RestAssured;
 import java.time.Clock;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import pojo.CreateUpdateUser;
 import pojo.CreateUpdateUserResponse;
@@ -145,5 +147,10 @@ public class ReqresTest {
         .when()
         .delete("/api/users/2")
         .then().log().all();
+  }
+
+  @AfterEach
+  public void tearDown() {
+    RestAssured.reset();
   }
 }
